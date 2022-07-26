@@ -17,16 +17,17 @@ return [
         'consumers_wait_for_messages' => 1
     ],
     'crypt' => [
-        'key' => $_ENV['CRYPT_KEY'], // 14c92108e9fecaffac743ac87cf1f7bc
+        'key' => $_ENV['CRYPT_KEY'],
     ],
     'db' => [
-        'table_prefix' => '',
+        'table_prefix' => $_ENV['DB_TABLE_PREFIX'],
         'connection' => [
             'default' => [
-                'host' => 'db',
-                'dbname' => 'magento',
-                'username' => 'magento',
-                'password' => 'magento',
+                'host' => $_ENV['DB_HOST'],
+                'port' => $_ENV['DB_PORT'],
+                'dbname' => $_ENV['DB_DATABASE'],
+                'username' => $_ENV['DB_USERNAME'],
+                'password' => $_ENV['DB_PASSWORD'],
                 'model' => 'mysql4',
                 'engine' => 'innodb',
                 'initStatements' => 'SET NAMES utf8;',
@@ -36,14 +37,14 @@ return [
                 ],
                 'profiler' => [
                     'class' => 'Magento\\Framework\\DB\\Profiler',
-                    'enabled' => $_ENV['DB_DEBUG']
+                    'enabled' => 0
                 ]
             ]
         ]
     ],
     'resource' => [
         'default_setup' => [
-            'connection' => 'default'
+            'connection' => $_ENV['DB_CONNECTION']
         ]
     ],
     'x-frame-options' => 'SAMEORIGIN',
@@ -142,7 +143,7 @@ return [
         'date' => 'Tue, 26 Jul 2022 07:51:15 +0000'
     ],
     'db_logger' => [
-        'output' => $_ENV['DB_LOGGER'] ? 'enabled' : 'disabled',
+        'output' => 'disabled',
         'log_everything' => 1,
         'query_time_threshold' => '0.001',
         'include_stacktrace' => 1
