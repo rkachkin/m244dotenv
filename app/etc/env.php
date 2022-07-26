@@ -121,8 +121,8 @@ return [
     ],
     'cache_types' => [
         'config' => 1,
-        'layout' => $_ENV['APP_ENV'] === 'production',
-        'block_html' => $_ENV['APP_ENV'] === 'production',
+        'layout' => $_ENV['APP_ENV'] === 'prod',
+        'block_html' => $_ENV['APP_ENV'] === 'prod',
         'collections' => 1,
         'reflection' => 1,
         'db_ddl' => 1,
@@ -131,7 +131,7 @@ return [
         'customer_notification' => 1,
         'config_integration' => 1,
         'config_integration_api' => 1,
-        'full_page' => $_ENV['APP_ENV'] === 'production',
+        'full_page' => $_ENV['APP_ENV'] === 'prod',
         'config_webservice' => 1,
         'translate' => 1
     ],
