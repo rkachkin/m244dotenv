@@ -164,10 +164,10 @@ return [
                 ]
             ],
             'system' => [
-                'full_page_cache' => [
-                    'caching_application' => '2',
-                    'ttl' => '604800'
-                ]
+//                'full_page_cache' => [
+//                    'caching_application' => '2',
+//                    'ttl' => '604800'
+//                ]
             ],
             'catalog' => [
                 'search' => [
