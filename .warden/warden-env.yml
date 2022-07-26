@@ -1,0 +1,7 @@
+version: "3.5"
+services:
+  php-fpm:
+    environment:
+      APP_ENV: ${APP_ENV}
+    command: >
+      /bin/sh -c "/var/www/html/.warden/php-fpm/command/environment.sh; php-fpm;"
