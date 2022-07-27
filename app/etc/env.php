@@ -81,9 +81,9 @@ return [
     'session' => [
         'save' => 'redis',
         'redis' => [
-            'host' => 'redis',
-            'port' => '6379',
-            'password' => '',
+            'host' => $_ENV['SESSION_REDIS_HOST'],
+            'port' => $_ENV['SESSION_REDIS_PORT'],
+            'password' => $_ENV['SESSION_REDIS_PASSWORD'],
             'timeout' => '2.5',
             'persistent_identifier' => '',
             'database' => '2',
