@@ -1,4 +1,50 @@
-<?php
+<?php /** @noinspection PhpArrayShapeAttributeCanBeAddedInspection */
+
+if (!class_exists(EnvConfig::class)) {
+
+    /**
+     * Config data collector from ENV
+     */
+    class EnvConfig {
+        static function getEnvConnectionConfig(?int $i): array
+        {
+            return [
+                'host' => !empty($_ENV["DB_PORT$i"])
+                    ? $_ENV["DB_HOST$i"] . ':' . $_ENV["DB_PORT$i"]
+                    : $_ENV["DB_HOST$i"],
+                'dbname' => $_ENV["DB_DATABASE$i"],
+                'username' => $_ENV["DB_USERNAME$i"],
+                'password' => $_ENV["DB_PASSWORD$i"],
+                'model' => 'mysql4',
+                'engine' => 'innodb',
+                'initStatements' => 'SET NAMES utf8;',
+                'active' => $_ENV["DB_ACTIVE$i"],
+                'driver_options' => [
+                    1014 => false
+                ],
+                'profiler' => [
+                    'class' => 'Magento\\Framework\\DB\\Profiler',
+                    'enabled' => 0,
+                ],
+            ];
+        }
+        static function getEnvResourceConfig(?int $i): array
+        {
+            return [
+                'connection' => $_ENV["DB_CONNECTION$i"],
+            ];
+        }
+    }
+}
+
+for ($i = 0; $i < 10; $i++) {
+    $i = $i > 0 ? $i : null;
+    if (isset($_ENV["DB_CONNECTION$i"])) {
+        $connection[$_ENV["DB_CONNECTION$i"]] = EnvConfig::getEnvConnectionConfig($i);
+        $resource["{$_ENV["DB_CONNECTION$i"]}_setup"] = EnvConfig::getEnvResourceConfig($i);
+    }
+}
+
 return [
     'backend' => [
         'frontName' => $_ENV['BACKEND_NAME']
@@ -21,31 +67,9 @@ return [
     ],
     'db' => [
         'table_prefix' => $_ENV['DB_TABLE_PREFIX'],
-        'connection' => [
-            'default' => [
-                'host' => !empty($_ENV['DB_PORT']) ? $_ENV['DB_HOST'] . ':' . $_ENV['DB_PORT'] : $_ENV['DB_HOST'],
-                'dbname' => $_ENV['DB_DATABASE'],
-                'username' => $_ENV['DB_USERNAME'],
-                'password' => $_ENV['DB_PASSWORD'],
-                'model' => 'mysql4',
-                'engine' => 'innodb',
-                'initStatements' => 'SET NAMES utf8;',
-                'active' => '1',
-                'driver_options' => [
-                    1014 => false
-                ],
-                'profiler' => [
-                    'class' => 'Magento\\Framework\\DB\\Profiler',
-                    'enabled' => 0
-                ]
-            ]
-        ]
+        'connection' => $connection ?? [],
     ],
-    'resource' => [
-        'default_setup' => [
-            'connection' => $_ENV['DB_CONNECTION']
-        ]
-    ],
+    'resource' => $resource ?? [],
     'x-frame-options' => 'SAMEORIGIN',
     'MAGE_MODE' => $_ENV['MAGE_MODE'],
     'http_cache_hosts' => [
