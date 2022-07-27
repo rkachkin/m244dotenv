@@ -83,6 +83,7 @@ return [
         'redis' => [
             'host' => $_ENV['SESSION_REDIS_HOST'],
             'port' => $_ENV['SESSION_REDIS_PORT'],
+            'user' => $_ENV['SESSION_REDIS_USERNAME'],
             'password' => $_ENV['SESSION_REDIS_PASSWORD'],
             'timeout' => '2.5',
             'persistent_identifier' => '',
@@ -114,6 +115,7 @@ return [
                     'server' => $_ENV['CACHE_FRONTEND_DEFAULT_HOST'],
                     'database' => '0',
                     'port' => $_ENV['CACHE_FRONTEND_DEFAULT_PORT'],
+                    'user' => $_ENV['CACHE_FRONTEND_DEFAULT_USERNAME'],
                     'password' => $_ENV['CACHE_FRONTEND_DEFAULT_PASSWORD'],
                     'compress_data' => '1',
                     'compression_lib' => ''
@@ -126,6 +128,7 @@ return [
                     'server' => $_ENV['CACHE_FRONTEND_PAGE_HOST'],
                     'database' => '1',
                     'port' => $_ENV['CACHE_FRONTEND_PAGE_PORT'],
+                    'user' => $_ENV['CACHE_FRONTEND_PAGE_USERNAME'],
                     'password' => $_ENV['CACHE_FRONTEND_PAGE_PASSWORD'],
                     'compress_data' => '0',
                     'compression_lib' => ''
