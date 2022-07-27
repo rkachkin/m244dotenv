@@ -108,25 +108,25 @@ return [
     'cache' => [
         'frontend' => [
             'default' => [
-                'id_prefix' => $_ENV['CACHE_ID_PREFIX'],
+                'id_prefix' => $_ENV['CACHE_DEFAULT_ID_PREFIX'],
                 'backend' => 'Magento\\Framework\\Cache\\Backend\\Redis',
                 'backend_options' => [
-                    'server' => 'redis',
+                    'server' => $_ENV['CACHE_FRONTEND_DEFAULT_HOST'],
                     'database' => '0',
-                    'port' => '6379',
-                    'password' => '',
+                    'port' => $_ENV['CACHE_FRONTEND_DEFAULT_PORT'],
+                    'password' => $_ENV['CACHE_FRONTEND_DEFAULT_PASSWORD'],
                     'compress_data' => '1',
                     'compression_lib' => ''
                 ]
             ],
             'page_cache' => [
-                'id_prefix' => $_ENV['CACHE_ID_PREFIX'],
+                'id_prefix' => $_ENV['CACHE_PAGE_ID_PREFIX'],
                 'backend' => 'Magento\\Framework\\Cache\\Backend\\Redis',
                 'backend_options' => [
-                    'server' => 'redis',
+                    'server' => $_ENV['CACHE_FRONTEND_PAGE_HOST'],
                     'database' => '1',
-                    'port' => '6379',
-                    'password' => '',
+                    'port' => $_ENV['CACHE_FRONTEND_PAGE_PORT'],
+                    'password' => $_ENV['CACHE_FRONTEND_PAGE_PASSWORD'],
                     'compress_data' => '0',
                     'compression_lib' => ''
                 ]
