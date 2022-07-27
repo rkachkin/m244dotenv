@@ -54,10 +54,10 @@ return [
     ],
     'queue' => [
         'amqp' => [
-            'host' => 'rabbitmq',
-            'port' => '5672',
-            'user' => 'guest',
-            'password' => 'guest',
+            'host' => $_ENV['QUEUE_AMQP_HOST'],
+            'port' => $_ENV['QUEUE_AMQP_PORT'],
+            'user' => $_ENV['QUEUE_AMQP_USERNAME'],
+            'password' => $_ENV['QUEUE_AMQP_PASSWORD'],
             'virtualhost' => '/'
         ],
         'consumers_wait_for_messages' => 1
