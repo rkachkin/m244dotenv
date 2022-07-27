@@ -108,7 +108,7 @@ return [
     'cache' => [
         'frontend' => [
             'default' => [
-                'id_prefix' => '69d_',
+                'id_prefix' => $_ENV['CACHE_ID_PREFIX'],
                 'backend' => 'Magento\\Framework\\Cache\\Backend\\Redis',
                 'backend_options' => [
                     'server' => 'redis',
@@ -120,7 +120,7 @@ return [
                 ]
             ],
             'page_cache' => [
-                'id_prefix' => '69d_',
+                'id_prefix' => $_ENV['CACHE_ID_PREFIX'],
                 'backend' => 'Magento\\Framework\\Cache\\Backend\\Redis',
                 'backend_options' => [
                     'server' => 'redis',
