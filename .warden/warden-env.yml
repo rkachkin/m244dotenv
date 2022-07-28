@@ -1,7 +1,15 @@
 version: "3.5"
 services:
+  nginx:
+    volumes:
+      - ./magento:/var/www/html:cached
+  php-debug:
+    volumes:
+      - ./magento:/var/www/html:cached
+      - ./.warden/php-fpm:/tmp/.warden/php-fpm
   php-fpm:
-    environment:
-      APP_ENV: ${APP_ENV}
+    volumes:
+      - ./magento:/var/www/html:cached
+      - ./.warden/php-fpm:/tmp/.warden/php-fpm
     command: >
-      /bin/sh -c "/var/www/html/.warden/php-fpm/command/environment.sh; php-fpm;"
+      /bin/sh -c "/tmp/.warden/php-fpm/command/pre-launch.sh; php-fpm;"
