@@ -175,10 +175,10 @@ return [
         'default' => [
             'web' => [
                 'unsecure' => [
-                    'base_url' => 'https://app.m244dotenv.test/'
+//                    'base_url' => 'https://app.m244dotenv.test/'
                 ],
                 'secure' => [
-                    'base_url' => 'https://app.m244dotenv.test/',
+//                    'base_url' => 'https://app.m244dotenv.test/',
                     'offloader_header' => 'X-Forwarded-Proto',
                     'use_in_frontend' => '1',
                     'use_in_adminhtml' => '1'
