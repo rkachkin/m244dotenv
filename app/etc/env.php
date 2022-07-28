@@ -61,5 +61,8 @@ return [
     ],
     'directories' => [
         'document_root_is_pub' => true
+    ],
+    'modules' => [
+        'Magento_TwoFactorAuth' => $_ENV['APP_ENV'] === 'prod',
     ]
 ];
