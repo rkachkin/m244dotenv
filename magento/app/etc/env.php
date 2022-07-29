@@ -45,10 +45,10 @@ return [
     'cache' => [
         'frontend' => [
             'default' => [
-                'id_prefix' => $_ENV['CACHE_DEFAULT_ID_PREFIX'],
+                'id_prefix' => $_ENV['CACHE_ID_PREFIX'],
             ],
             'page_cache' => [
-                'id_prefix' => $_ENV['CACHE_PAGE_ID_PREFIX'],
+                'id_prefix' => $_ENV['CACHE_ID_PREFIX'],
             ]
         ],
         'allow_parallel_generation' => false
@@ -64,5 +64,14 @@ return [
     ],
     'modules' => [
         'Magento_TwoFactorAuth' => $_ENV['APP_ENV'] === 'prod',
+    ],
+    'system' => [
+        'default' => [
+            'catalog' => [
+                'search' => [
+                    'elasticsearch7_server_hostname' => $_ENV['ELASTIC_HOST']
+                ]
+            ]
+        ]
     ]
 ];
